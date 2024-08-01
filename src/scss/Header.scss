@@ -1,0 +1,26 @@
+.navbar-nav .nav-link{
+    color: #333;
+    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+    font-size: 17px;
+    line-height: 20px;
+    margin-left: 20px;
+    
+}
+.navbar-brand{
+    font-size: 35px;
+}
+.navbar-nav .nav-link.active{
+    color: #8854c0;
+}
+.login{
+    border-radius: 5px;
+    margin-right: 10px;
+}
+.signUp{
+    border-radius: 5px;
+    margin-right: 10px;
+    background-color: #8854c0;
+    color: #fff;
+    border: #fff;
+    padding: 0 15px;
+}
