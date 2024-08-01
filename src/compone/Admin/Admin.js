@@ -4,6 +4,7 @@ import { Row } from 'react-bootstrap';
 import SideBar from './SideBar';
 import '../../scss/Admin.scss';
 import { FaBars } from 'react-icons/fa';
+import { Outlet } from 'react-router-dom';
 
 function Admin() {
     const [collapsed, setCollapsed] = useState(false);
@@ -13,7 +14,13 @@ function Admin() {
                 <SideBar collapsed={collapsed} />
             </div>
             <div className='admin-main'>
-                <FaBars onClick={() => setCollapsed(!collapsed)} />
+                <div className='collapsed'>
+                    <FaBars onClick={() => setCollapsed(!collapsed)} />
+                </div>
+                <div>
+                    <Outlet />
+                </div>
+
             </div>
         </div>
     );

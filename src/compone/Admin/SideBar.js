@@ -14,6 +14,7 @@ import sidebarBg from '../../assests/bg2.jpg';
 import { MdDashboard } from "react-icons/md";
 import { DiReact } from "react-icons/di";
 import "../../scss/SideBar.scss";
+import { Link } from 'react-router-dom';
 function SideBar(props) {
     const { image, collapsed, toggled, handleToggleSidebar } = props;
 
@@ -52,6 +53,7 @@ function SideBar(props) {
 
                         >
                             Dashboard
+                            <Link to={"/admin"} />
                         </MenuItem>
 
                     </Menu>
@@ -61,8 +63,8 @@ function SideBar(props) {
                             icon={<FaGem />}
                             title={"Fuatures"}
                         >
-                            <MenuItem> quan li quizz</MenuItem>
-                            <MenuItem> quan li nguoi dung</MenuItem>
+                            <MenuItem>quan li quizz</MenuItem>
+                            <MenuItem><Link to={"manage-users"} />  quan li nguoi dung</MenuItem>
                             <MenuItem> quan li cau hoi</MenuItem>
                         </SubMenu>
 

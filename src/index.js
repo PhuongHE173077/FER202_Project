@@ -8,6 +8,8 @@ import HomePage from './compone/Home/HomePage';
 import Admin from './compone/Admin/Admin';
 import User from './compone/User/User';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import DashBoard from './compone/Admin/Content/DashBoard';
+import ManageUser from './compone/Admin/Content/ManageUser';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -17,9 +19,12 @@ root.render(
       <Route path='/' element={<App />} >
         <Route index element={<HomePage />} />
 
-        <Route path='/user' element={<User />} />
+        <Route path='user' element={<User />} />
       </Route>
-      <Route path='/admin' element={<Admin />} />
+      <Route path='/admin' element={<Admin />} >
+        <Route index element={<DashBoard />} />
+        <Route path='manage-users' element={<ManageUser />} />
+      </Route>
     </Routes>
   </BrowserRouter>
 );
