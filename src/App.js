@@ -1,11 +1,11 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/esm/Container';
-import './App.css';
+import './App.scss';
 import Header from './compone/Header/Header';
 import { Outlet } from 'react-router-dom';
 function App() {
   return (
-    <Container>
+    <Container fluid>
       <div className='header-container'>
         <Header />
       </div>
@@ -17,7 +17,7 @@ function App() {
       </div>
 
 
-    </Container>
+    </Container >
   );
 }
 
