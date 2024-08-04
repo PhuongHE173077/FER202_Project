@@ -5,6 +5,8 @@ import SideBar from './SideBar';
 import '../../scss/Admin.scss';
 import { FaBars } from 'react-icons/fa';
 import { Outlet } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Admin() {
     const [collapsed, setCollapsed] = useState(false);
@@ -22,6 +24,19 @@ function Admin() {
                 </div>
 
             </div>
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+
+            />
         </div>
     );
 }

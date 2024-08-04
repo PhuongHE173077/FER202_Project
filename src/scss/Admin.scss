@@ -1,9 +1,14 @@
 .admin-container{
     display: flex;
+    
     .admin-sidebar{
         .pro-sidebar{
             height: 100vh; 
         }
        
+    }
+    .admin-main{
+        margin-left: 20px;
+        width: 100%;
     }
 }
