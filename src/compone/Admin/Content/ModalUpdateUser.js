@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import '../../../scss/ModalCreateUser.scss';
 import { postCreateNewUser } from '../../services/ApiService';
 
-function ModalCreateUser(props) {
+function ModalUpdateUSer(props) {
     const { lgShow, setLgShow, fetchListUser } = props;
     const [email, setEmail] = useState('');
     const [useName, setUseName] = useState('');
@@ -141,4 +141,4 @@ function ModalCreateUser(props) {
     );
 }
 
-export default ModalCreateUser;
+export default ModalUpdateUSer;

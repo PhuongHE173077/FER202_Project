@@ -2,18 +2,8 @@ import { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import { getAllUsers } from '../../services/ApiService';
 
-function TableUsers() {
-    const [listUser, setListUser] = useState([]);
-    useEffect(() => {
-        fetchListUser();
-    }, [])
-    const fetchListUser = async () => {
-        let res = await getAllUsers();
-        console.log(res)
-        if (res.EC === 0) {
-            setListUser(res.DT)
-        }
-    }
+function TableUsers(props) {
+    const { listUser, handleClickUpdate } = props
     return (
         <>
             <Table striped bordered hover>
@@ -30,7 +20,7 @@ function TableUsers() {
                     {
                         listUser && listUser.length > 0 ? (listUser.map((user, index) => (
                             <tr key={`tabel-list-${index}`}>
-                                <td>{index}</td>
+                                <td>{index + 1}</td>
                                 <td>{user?.username}</td>
                                 <td>{user?.email}</td>
                                 <td>{user?.role}</td>

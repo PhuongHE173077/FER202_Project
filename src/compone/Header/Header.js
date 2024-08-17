@@ -4,8 +4,18 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import "../../scss/Header.scss"
 import { Link, NavLink } from 'react-router-dom';
+import Swal from 'sweetalert2'
 
 function Header() {
+    const handleSWeet = () => {
+        Swal.fire({
+            icon: "success",
+            title: "Oops...",
+            text: "Something went wrong!",
+            footer: '<a href="#">Why do I have this issue?</a>',
+            timer: 1500
+        });
+    }
     return (
         <Navbar expand="lg" className="bg-body-tertiary">
             <Container>
@@ -19,7 +29,7 @@ function Header() {
                         <NavLink to="/user" className='nav-link'>User</NavLink>
                     </Nav>
                     <Nav>
-                        <button className='login'>Đăng Nhập</button>
+                        <button className='login' onClick={() => handleSWeet()}>Đăng Nhập</button>
                         <button className='signUp'>Đăng Ký</button>
 
                         {/* <NavDropdown title="Setting" id="basic-nav-dropdown">
