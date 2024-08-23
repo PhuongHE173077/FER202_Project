@@ -1,19 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Form, Image, Modal } from 'react-bootstrap';
 import { CiSquarePlus } from "react-icons/ci";
 import { toast } from 'react-toastify';
 import '../../../scss/ModalCreateUser.scss';
-import { postCreateNewUser } from '../../services/ApiService';
+import { PutUpdateUser, postCreateNewUser } from '../../services/ApiService';
 
 function ModalUpdateUSer(props) {
-    const { lgShow, setLgShow, fetchListUser } = props;
+    const { showModalUpdate, setShowModalUpadte, dataUpdate, fetchListUser } = props;
+    console.log(dataUpdate);
+    const [id, setId] = useState('');
     const [email, setEmail] = useState('');
     const [useName, setUseName] = useState('');
     const [password, setPassword] = useState('');
     const [role, setRole] = useState("USER");
     const [image, setImage] = useState('');
     const [previewImage, setPreviewImage] = useState("");
-
+    useEffect(() => {
+        setId(dataUpdate.id)
+        setEmail(dataUpdate.email);
+        setUseName(dataUpdate.username);
+        setRole(dataUpdate.role);
+        setImage(dataUpdate.image);
+        setPreviewImage(`data:image/jpeg;base64,${dataUpdate.image}`)
+    }, [dataUpdate])
     const handleUpLoadImage = (image) => {
         if (image.target && image.target.files && image.target.files[0]) {
             setPreviewImage(URL.createObjectURL(image.target.files[0]))
@@ -22,11 +31,12 @@ function ModalUpdateUSer(props) {
     }
 
     const handleClose = () => {
-        setLgShow(false);
-        setEmail("");
-        setPassword("");
-        setRole("USER");
-        setPreviewImage("");
+        setShowModalUpadte(false);
+        setEmail(dataUpdate.email);
+        setUseName(dataUpdate.username);
+        setRole(dataUpdate.role);
+        setImage(dataUpdate.image);
+        setPreviewImage(`data:image/jpeg;base64,${dataUpdate.image}`)
     }
 
     const validateEmail = (email) => {
@@ -37,20 +47,18 @@ function ModalUpdateUSer(props) {
             );
     };
 
-    const handleCreate = async () => {
+    const handleUpdate = async () => {
         // validate 
         if (!validateEmail(email)) {
             toast.error("invalid email")
             return;
         }
-        if (!password) {
-            toast.error("Invalid password")
-        }
+
 
         // submit
 
 
-        let data = await postCreateNewUser(email, password, useName, role, image);
+        let data = await PutUpdateUser(id, useName, role, image);
         console.log("data :", data)
         if (data && data.EC === 0) {
             toast.success(data.EM);
@@ -67,23 +75,24 @@ function ModalUpdateUSer(props) {
 
             <Modal
                 size="lg"
-                show={lgShow}
+                show={showModalUpdate}
                 onHide={() => handleClose()}
                 aria-labelledby="example-modal-sizes-title-lg"
                 className='model-add-user'
             >
                 <Modal.Header closeButton>
                     <Modal.Title id="example-modal-sizes-title-lg">
-                        Add User
+                        UPdate User
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                             <Form.Label>Email address</Form.Label>
-                            <Form.Control
+                            <Form.Control defaultValue={email}
                                 type="email"
                                 placeholder="name@example.com"
+                                disabled={true}
                                 autoFocus
                                 onChange={(e) => setEmail(e.target.value)}
                             />
@@ -91,6 +100,7 @@ function ModalUpdateUSer(props) {
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                             <Form.Label>user Name</Form.Label>
                             <Form.Control
+                                defaultValue={useName}
                                 type="text"
                                 placeholder="User Name  "
                                 onChange={(e) => setUseName(e.target.value)}
@@ -98,20 +108,11 @@ function ModalUpdateUSer(props) {
                             />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control
-                                type="Password"
-                                onChange={(e) => setPassword(e.target.value)}
-
-
-                            />
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                             <Form.Label>Role</Form.Label>
 
-                            <Form.Select onChange={(e) => setRole(e.target.value)} >
-                                <option value={"USER"}>User</option>
-                                <option value={"ADMIN"}>Admin</option>
+                            <Form.Select value={role} onChange={(e) => setRole(e.target.value)} >
+                                <option value={"USER"}>USER</option>
+                                <option value={"ADMIN"}>ADMIN</option>
                             </Form.Select>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -133,7 +134,7 @@ function ModalUpdateUSer(props) {
 
 
                         </Form.Group>
-                        <Button style={{ marginTop: '10px' }} onClick={() => handleCreate()}> Create User</Button>
+                        <Button style={{ marginTop: '10px' }} onClick={() => handleUpdate()}> Create User</Button>
                     </Form>
                 </Modal.Body>
             </Modal>

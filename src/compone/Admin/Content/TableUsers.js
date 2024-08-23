@@ -26,7 +26,7 @@ function TableUsers(props) {
                                 <td>{user?.role}</td>
                                 <td>
                                     <button className='btn btn-secondary me-md-2'>View</button>
-                                    <button className='btn btn-success me-md-2'>Update</button>
+                                    <button onClick={() => handleClickUpdate(user)} className='btn btn-success me-md-2'>Update</button>
                                     <button className='btn btn-danger'>Delete</button>
 
                                 </td>

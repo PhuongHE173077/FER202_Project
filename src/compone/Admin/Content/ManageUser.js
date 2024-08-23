@@ -11,6 +11,7 @@ function ManageUser(props) {
     const [lgShow, setLgShow] = useState(false);
     const [listUser, setListUser] = useState([]);
     const [showModalUpdate, setShowModalUpadte] = useState(false);
+    const [dataUpdate, setDataUpdate] = useState({});
     useEffect(() => {
         fetchListUser();
     }, [])
@@ -21,9 +22,11 @@ function ManageUser(props) {
             setListUser(res.DT)
         }
     }
-    const handleClickUpdate = () => {
+    const handleClickUpdate = (user) => {
         setShowModalUpadte(true);
+        setDataUpdate(user)
     }
+
     return (
         <div className='manage-use-container'>
             <div className='title'>
@@ -39,7 +42,7 @@ function ManageUser(props) {
                 <TableUsers listUser={listUser} handleClickUpdate={handleClickUpdate} />
             </div>
             <div>
-                <ModalUpdateUSer showModalUpdate={showModalUpdate} setShowModalUpadte={setShowModalUpadte} />
+                <ModalUpdateUSer showModalUpdate={showModalUpdate} setShowModalUpadte={setShowModalUpadte} dataUpdate={dataUpdate} fetchListUser={fetchListUser} />
             </div>
         </div>
     );
