@@ -3,7 +3,7 @@ import Table from 'react-bootstrap/Table';
 import { getAllUsers } from '../../services/ApiService';
 
 function TableUsers(props) {
-    const { listUser, handleClickUpdate } = props
+    const { listUser, handleClickUpdate, handleClickDelete } = props
     return (
         <>
             <Table striped bordered hover>
@@ -27,7 +27,7 @@ function TableUsers(props) {
                                 <td>
                                     <button className='btn btn-secondary me-md-2'>View</button>
                                     <button onClick={() => handleClickUpdate(user)} className='btn btn-success me-md-2'>Update</button>
-                                    <button className='btn btn-danger'>Delete</button>
+                                    <button onClick={() => handleClickDelete(user)} className='btn btn-danger'>Delete</button>
 
                                 </td>
                             </tr>

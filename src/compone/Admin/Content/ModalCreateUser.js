@@ -133,7 +133,7 @@ function ModalCreateUser(props) {
 
 
                         </Form.Group>
-                        <Button style={{ marginTop: '10px' }} onClick={() => handleCreate()}> Create User</Button>
+                        <Button style={{ marginTop: '10px' }} onClick={() => handleCreate()}> Save </Button>
                     </Form>
                 </Modal.Body>
             </Modal>

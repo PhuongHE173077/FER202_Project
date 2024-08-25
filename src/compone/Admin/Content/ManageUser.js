@@ -4,6 +4,8 @@ import { Button } from 'react-bootstrap';
 import TableUsers from './TableUsers';
 import { getAllUsers } from '../../services/ApiService';
 import ModalUpdateUSer from './ModalUpdateUser';
+import ModalDeleteUser from './ModalDeleteUser';
+import TableUserPaginate from './TableUserPaginate';
 
 
 
@@ -11,6 +13,7 @@ function ManageUser(props) {
     const [lgShow, setLgShow] = useState(false);
     const [listUser, setListUser] = useState([]);
     const [showModalUpdate, setShowModalUpadte] = useState(false);
+    const [showModalDelete, setShowModalDelete] = useState(false);
     const [dataUpdate, setDataUpdate] = useState({});
     useEffect(() => {
         fetchListUser();
@@ -26,6 +29,11 @@ function ManageUser(props) {
         setShowModalUpadte(true);
         setDataUpdate(user)
     }
+    const handleClickDelete = (user) => {
+        setShowModalDelete(true);
+        setDataUpdate(user);
+
+    }
 
     return (
         <div className='manage-use-container'>
@@ -38,12 +46,18 @@ function ManageUser(props) {
             <div>
                 <ModalCreateUser lgShow={lgShow} setLgShow={setLgShow} fetchListUser={fetchListUser} />
             </div>
-            <div >
-                <TableUsers listUser={listUser} handleClickUpdate={handleClickUpdate} />
+
+            <div>
+                <TableUserPaginate listUser={listUser} handleClickUpdate={handleClickUpdate} handleClickDelete={handleClickDelete} />
             </div>
+
             <div>
                 <ModalUpdateUSer showModalUpdate={showModalUpdate} setShowModalUpadte={setShowModalUpadte} dataUpdate={dataUpdate} fetchListUser={fetchListUser} />
             </div>
+            <div>
+                <ModalDeleteUser showModalDelete={showModalDelete} setShowModalDelete={setShowModalDelete} dataUpdate={dataUpdate} fetchListUser={fetchListUser} />
+            </div>
+
         </div>
     );
 }
