@@ -10,6 +10,7 @@ import User from './compone/User/User';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import DashBoard from './compone/Admin/Content/DashBoard';
 import ManageUser from './compone/Admin/Content/ManageUser';
+import Login from './compone/Authentication/Login';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -25,6 +26,7 @@ root.render(
         <Route index element={<DashBoard />} />
         <Route path='manage-users' element={<ManageUser />} />
       </Route>
+      <Route path='/login' element={<Login />} />
     </Routes>
   </BrowserRouter>
 );

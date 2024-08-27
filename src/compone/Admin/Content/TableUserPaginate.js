@@ -94,7 +94,7 @@ function TableUserPaginate(props) {
     }
     return (
         <>
-            <PaginatedItems itemsPerPage={5} />
+            <PaginatedItems itemsPerPage={5} alignItems={'right'} />
         </>
 
     );

@@ -17,7 +17,7 @@ function Admin() {
             </div>
             <div className='admin-main'>
                 <div className='collapsed'>
-                    <FaBars onClick={() => setCollapsed(!collapsed)} />
+                    <FaBars cursor={'pointer'} onClick={() => setCollapsed(!collapsed)} />
                 </div>
                 <div>
                     <Outlet />

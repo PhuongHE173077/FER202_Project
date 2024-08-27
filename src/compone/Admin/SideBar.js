@@ -1,20 +1,20 @@
 import React from 'react';
+import { DiReact } from "react-icons/di";
+import { FaGem, FaGithub } from 'react-icons/fa';
+import { MdDashboard } from "react-icons/md";
 import {
-    ProSidebar,
     Menu,
     MenuItem,
-    SubMenu,
-    SidebarHeader,
-    SidebarFooter,
+    ProSidebar,
     SidebarContent,
+    SidebarFooter,
+    SidebarHeader,
+    SubMenu,
 } from 'react-pro-sidebar';
-import { FaTachometerAlt, FaGem, FaList, FaGithub, FaRegLaughWink, FaHeart } from 'react-icons/fa';
 import 'react-pro-sidebar/dist/css/styles.css';
-import sidebarBg from '../../assests/bg2.jpg';
-import { MdDashboard } from "react-icons/md";
-import { DiReact } from "react-icons/di";
-import "../../scss/SideBar.scss";
 import { Link } from 'react-router-dom';
+import sidebarBg from '../../assets/bg2.jpg';
+import "../../scss/SideBar.scss";
 function SideBar(props) {
     const { image, collapsed, toggled, handleToggleSidebar } = props;
 
