@@ -8,27 +8,32 @@ import HomePage from './compone/Home/HomePage';
 import Admin from './compone/Admin/Admin';
 import User from './compone/User/User';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Provider } from 'react-redux';
 import DashBoard from './compone/Admin/Content/DashBoard';
 import ManageUser from './compone/Admin/Content/ManageUser';
 import Login from './compone/Authentication/Login';
+import store from './redux/store';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <BrowserRouter>
-    <Routes>
-      <Route path='/' element={<App />} >
-        <Route index element={<HomePage />} />
+  <Provider store={store}>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<App />} >
+          <Route index element={<HomePage />} />
 
-        <Route path='user' element={<User />} />
-      </Route>
-      <Route path='/admin' element={<Admin />} >
-        <Route index element={<DashBoard />} />
-        <Route path='manage-users' element={<ManageUser />} />
-      </Route>
-      <Route path='/login' element={<Login />} />
-    </Routes>
-  </BrowserRouter>
+          <Route path='user' element={<User />} />
+        </Route>
+        <Route path='/admin' element={<Admin />} >
+          <Route index element={<DashBoard />} />
+          <Route path='manage-users' element={<ManageUser />} />
+        </Route>
+        <Route path='/login' element={<Login />} />
+      </Routes>
+    </BrowserRouter>
+  </Provider>
+
 );
 
 // If you want to start measuring performance in your app, pass a function
