@@ -4,23 +4,26 @@ import { useNavigate } from 'react-router-dom';
 import '../../scss/Login.scss'
 import { postLogin } from '../services/ApiService';
 import Swal from 'sweetalert2';
+import { useDispatch } from 'react-redux';
+import { doLogin } from '../../redux/action/userAction';
 
 function Login(props) {
     const nav = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const dispatch = useDispatch();
     const handleClickHome = () => {
         nav('/')
     }
     const handleLogin = async () => {
         let res = await postLogin(email, password);
-        console.log(res)
+
         if (res && res.EC === 0) {
+            dispatch(doLogin(res))
             Swal.fire({
                 icon: "success",
                 title: "Success",
                 text: res.EM,
-                timer: 1500
             });
             nav('/')
         } else {

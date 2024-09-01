@@ -1,7 +1,12 @@
 import React from 'react';
 import { Row, Col } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
 
 function MyComponent() {
+    const account = useSelector(state => state.account.account)
+    const isAuthenticated = useSelector(state => state.account.isAuthenticated)
+    console.log(account)
+    console.log(isAuthenticated)
     return (
         <div className='homepage container'>
             <Row style={{
