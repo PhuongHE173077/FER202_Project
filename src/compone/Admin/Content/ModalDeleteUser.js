@@ -8,7 +8,7 @@ function ModalDeleteUser(props) {
     const handleClose = () => {
         setShowModalDelete(false)
     }
-    console.log(dataUpdate.id)
+
     const handleDeteleUser = async () => {
         let data = await deleteUsers(dataUpdate.id);
         if (data && data.EC === 0) {

@@ -14,6 +14,7 @@ import ManageUser from './compone/Admin/Content/ManageUser';
 import Login from './compone/Authentication/Login';
 import { store, persistor } from './redux/store';
 import { PersistGate } from 'redux-persist/integration/react';
+import ListQuiz from './compone/User/ListQuiz';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -24,7 +25,7 @@ root.render(
         <Routes>
           <Route path='/' element={<App />} >
             <Route index element={<HomePage />} />
-
+            <Route path='/quizz' element={<ListQuiz />} />
             <Route path='user' element={<User />} />
           </Route>
           <Route path='/admin' element={<Admin />} >
@@ -32,6 +33,7 @@ root.render(
             <Route path='manage-users' element={<ManageUser />} />
           </Route>
           <Route path='/login' element={<Login />} />
+
         </Routes>
       </BrowserRouter>
     </PersistGate>

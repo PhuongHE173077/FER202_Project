@@ -1,12 +1,11 @@
 import React from 'react';
 import { Row, Col } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
-function MyComponent() {
-    const account = useSelector(state => state.account.account)
+function HomePage() {
     const isAuthenticated = useSelector(state => state.account.isAuthenticated)
-    console.log(account)
-    console.log(isAuthenticated)
+    const nav = useNavigate();
     return (
         <div className='homepage container'>
             <Row style={{
@@ -18,8 +17,8 @@ function MyComponent() {
                         not weekends.</h1>
                     <h5>Deliver instruction that’s relevant for every student — now with a boost from AI.</h5>
                     <div className='button-main'>
-                        <button className='sign-up'>Sign up free</button>
-                        <button className='learn-more'>Learn more</button>
+                        {isAuthenticated === true ? <> <button onClick={() => nav('/quizz')} className='learn-more'>Doing quizz now</button></> : <button onClick={() => nav("/login")} className='sign-up'>Sign up free</button>}
+
 
                     </div>
                 </Col>
@@ -34,4 +33,4 @@ function MyComponent() {
     );
 }
 
-export default MyComponent;
+export default HomePage;

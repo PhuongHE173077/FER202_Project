@@ -1,4 +1,5 @@
 import axios from "axios";
+import { store } from "../../redux/store";
 
 const instance = axios.create({
     baseURL: 'http://localhost:8081/',
@@ -9,6 +10,9 @@ const instance = axios.create({
 
 // Add a request interceptor
 instance.interceptors.request.use(function (config) {
+
+    const access_token = store?.getState()?.account?.account?.access_token;
+    config.headers["Authorization"] = "Bearer " + access_token;
     // Do something before request is sent
     return config;
 }, function (error) {
