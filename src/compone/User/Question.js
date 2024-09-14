@@ -1,11 +1,10 @@
 import React from 'react';
 
 function Question(props) {
-    const { index, data } = props;
+    const { index, data, handleCheckBox } = props;
     const handleChecked = (e, aId) => {
-        // console.log(e.target.checked)
-        console.log(aId, data.questionID)
-        // console.log(data)
+        // console.log(aId, data.questionID)
+        handleCheckBox(aId, data.questionID)
     }
     return (
         <>
@@ -20,7 +19,7 @@ function Question(props) {
                     data.answers.map((answer, index) => (
 
                         <div className="form-check" key={`answer-${index}`}>
-                            <input className="form-check-input"
+                            <input className="form-check-input" checked={answer.isSelected}
                                 onChange={(e) => handleChecked(e, `${answer.id}`)} type="checkbox" value="" />
                             <label className="form-check-label" >
                                 {answer.description}
