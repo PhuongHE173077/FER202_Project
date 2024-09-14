@@ -45,6 +45,7 @@ function ModalCreateUser(props) {
         }
         if (!password) {
             toast.error("Invalid password")
+            return;
         }
 
         // submit

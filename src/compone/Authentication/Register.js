@@ -10,36 +10,29 @@ import {
     MDBInput
 } from 'mdb-react-ui-kit';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
-// import '../../scss/Login.scss'
-import { postLogin } from '../services/ApiService';
-import Swal from 'sweetalert2';
-import { useDispatch } from 'react-redux';
-import { doLogin } from '../../redux/action/userAction';
+import { toast } from 'react-toastify';
+function Register(props) {
 
-function Login(props) {
-    const nav = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const dispatch = useDispatch();
+    const [passwordCf, setPasswordCf] = useState('');
 
-    const handleLogin = async () => {
-        let res = await postLogin(email, password);
+    const validateEmail = (email) => {
+        return String(email)
+            .toLowerCase()
+            .match(
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            );
+    };
 
-        if (res && res.EC === 0) {
-            dispatch(doLogin(res))
-            Swal.fire({
-                icon: "success",
-                title: "Success",
-                text: res.EM,
-            });
-            nav('/')
-        } else {
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: res.EM,
-                timer: 1500
-            });
+    const handleRegister = () => {
+        if (!validateEmail(email)) {
+            toast.error("Invalid Email")
+            return;
+        }
+        if (password !== passwordCf) {
+            toast.error("password and password confirm is not sample")
+            return;
         }
 
     }
@@ -70,13 +63,12 @@ function Login(props) {
 
                                 <MDBInput wrapperClass='mb-4' onChange={(e) => setEmail(e.target.value)} label='Email address' id='formControlLg' type='email' size="lg" />
                                 <MDBInput wrapperClass='mb-4' onChange={(e) => setPassword(e.target.value)} label='Password' id='formControlLg' type='password' size="lg" />
-
-                                <MDBBtn className="mb-4 px-5" onClick={handleLogin} color='dark' size='lg'>Login</MDBBtn>
+                                <MDBInput wrapperClass='mb-4' onChange={(e) => setPasswordCf(e.target.value)} label='Password confirm' id='formControlLg' type='password' size="lg" />
+                                <MDBBtn className="mb-4 px-5" onClick={handleRegister} color='dark' size='lg'>Register</MDBBtn>
                                 <a className="small text-muted" href="#!">Forgot password?</a>
-                                <p className="mb-5 pb-lg-2" style={{ color: '#393f81' }}>Don't have an account? <Link to={'/register'} style={{ color: '#393f81' }}>Register here</Link></p>
+                                <p className="mb-5 pb-lg-2" style={{ color: '#393f81' }}>Do have an account? <Link to={'/login'} style={{ color: '#393f81' }}>Login here</Link></p>
 
                                 <div className='d-flex flex-row justify-content-start'>
-                                    <a href="#!" className="small text-muted">Privacy policy</a>
                                 </div>
 
                             </MDBCardBody>
@@ -89,9 +81,7 @@ function Login(props) {
             <div>.</div>
 
         </div>
-
-
     );
 }
 
-export default Login;
+export default Register;

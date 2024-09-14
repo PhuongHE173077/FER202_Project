@@ -21,7 +21,7 @@ function ListQuiz(props) {
         <div className='quizz-container container'>
             {arrQuiz && arrQuiz.length > 0 &&
                 arrQuiz.map((quizz, index) => (
-                    <div className="card" style={{ width: "18rem" }}>
+                    <div key={`quiz-${index}`} className="card" style={{ width: "18rem" }}>
                         <img className="card-img-top" src={`data:image/png;base64,${quizz.image}`} alt="Card image cap" />
                         <div className="card-body">
                             <h5 className="card-title">{index + 1}</h5>
