@@ -20,6 +20,7 @@ import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import Register from './compone/Authentication/Register';
 import { ToastContainer } from 'react-toastify';
+import ManageQuiz from './compone/Admin/Content/Quizz/ManageQuiz';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -36,6 +37,7 @@ root.render(
           <Route path='/admin' element={<Admin />} >
             <Route index element={<DashBoard />} />
             <Route path='manage-users' element={<ManageUser />} />
+            <Route path='manage-quiz' element={<ManageQuiz />} />
           </Route>
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />

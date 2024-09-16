@@ -63,7 +63,7 @@ function SideBar(props) {
                             icon={<FaGem />}
                             title={"Fuatures"}
                         >
-                            <MenuItem>quan li quizz</MenuItem>
+                            <MenuItem> <Link to={"manage-quiz"} >quan li quizz</Link></MenuItem>
                             <MenuItem><Link to={"manage-users"} />  quan li nguoi dung</MenuItem>
                             <MenuItem> quan li cau hoi</MenuItem>
                         </SubMenu>
